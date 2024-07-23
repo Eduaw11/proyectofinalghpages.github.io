@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página con Tabs</title>
+  <link rel="stylesheet" href="Style.css">
+  <style>
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="tabs">
+    <button class="tablink" onclick="openTab(event, 'taskList')">Lista de Tareas</button>
+    <button class="tablink" onclick="openTab(event, 'otherFunction')">Sort</button>
+  </div>
+
+  <div id="taskList" class="tab-content">
+    <h2>Lista de Tareas</h2>
+    <ul id="taskListContainer">
+      <!-- Aquí se llenará dinámicamente la lista de tareas con JavaScript -->
+    </ul>
+    <input type="text" id="taskInput" placeholder="Agregar nueva tarea">
+    <button onclick="addTask()">Agregar Tarea</button>
+  </div>
+
+  <div id="otherFunction" class="tab-content">
+    <h2>Otra Funcionalidad</h2>
+    <!-- Contenido de la otra funcionalidad -->
+  </div>
+
+  <script>
+    function openTab(evt, tabName) {
+      // Ocultar todos los contenidos de las pestañas
+      const tabContents = document.getElementsByClassName("tab-content");
+      for (let i = 0; i < tabContents.length; i++) {
+        tabContents[i].classList.remove('active');
+      }
+
+      // Mostrar el contenido de la pestaña seleccionada
+      document.getElementById(tabName).classList.add('active');
+
+      // Lógica específica para cada pestaña si es necesario
+      if (tabName === 'taskList') {
+        // Aquí puedes agregar lógica específica para la lista de tareas
+        // Por ejemplo, llenar dinámicamente la lista de tareas
+        renderTaskList();
+      } else if (tabName === 'otherFunction') {
+        l
+      }
+    }
+
+    // Ejemplo de función para agregar tarea a la lista
+    function addTask() {
+      const taskInput = document.getElementById('taskInput');
+      const taskListContainer = document.getElementById('taskListContainer');
+      const taskText = taskInput.value.trim();
+
+      if (taskText !== '') {
+        const li = document.createElement('li');
+        li.textContent = taskText;
+        taskListContainer.appendChild(li);
+        taskInput.value = '';
+      }
+    }
+
+    // Ejemplo de función para llenar dinámicamente la lista de tareas
+    function renderTaskList() {
+      const tasks = ['Tarea 1', 'Tarea 2', 'Tarea 3']; // Ejemplo de datos de tareas
+
+      const taskListContainer = document.getElementById('taskListContainer');
+      taskListContainer.innerHTML = ''; // Limpiar contenido existente
+
+      tasks.forEach(task => {
+        const li = document.createElement('li');
+        li.textContent = task;
+        taskListContainer.appendChild(li);
+      });
+    }
+
+    // Llamada inicial para llenar la lista de tareas al cargar la página
+    renderTaskList();
+  </script>
+</body>
+</html>
+
